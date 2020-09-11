@@ -10,7 +10,6 @@ const authenticated = next => (root, args, ctx, info) => {
     if(!ctx.currentUser) {
         throw new AuthenticationError('you must loggin')
     }
-
     return next(root, args, ctx, info)
 }
 
@@ -63,5 +62,4 @@ module.exports = {
               subscribe: () => pubsub.asyncIterator(PIN_UPDATED)
             }
           }
-
 }

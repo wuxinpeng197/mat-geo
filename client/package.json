@@ -23,6 +23,7 @@
     "react-scripts": "2.1.3",
     "subscriptions-transport-ws": "^0.9.15"
   },
+  
   "scripts": {
     "now-build": "react-scripts build",
     "start": "react-scripts start",
