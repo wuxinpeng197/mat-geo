@@ -49,9 +49,19 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Start the server
+// DEFAULT 
+if( process.env.NODE_ENV === 'production' ){
+    const path = require('path');
+    app.get('/*',(req,res)=>{
+        res.sendfile(path.resolve(__dirname,'./client','build','index.html'))
+    })
+}
+
 app.listen(({ port: process.env.PORT || 4000 }), () => {
     console.log('Go to http://localhost:3000/graphiql to run queries!');
   });
+
+
 
 // const server  = new ApolloServer({
 //     typeDefs,
