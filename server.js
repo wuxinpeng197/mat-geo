@@ -1,7 +1,8 @@
 const { ApolloServer } = require("apollo-server");
-const express = require('express');
 const mongoose = require("mongoose");
 require("dotenv").config();
+const bodyParser = require('body-parser');
+
 
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
@@ -30,14 +31,6 @@ const server = new ApolloServer({
   }
 });
 
-// DEFAULT 
-const app = express();
-
-if( process.env.NODE_ENV === 'production' ){
-  app.use(express.static(path.resolve(__dirname, './client/build')));
-}
-
-server.applyMiddleware({ app }); 
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`Server listening on ${url}`);
